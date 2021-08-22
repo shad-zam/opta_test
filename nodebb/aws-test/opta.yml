@@ -1,0 +1,10 @@
+name: aws-staging
+org_name: shad-zam
+providers:
+  aws:
+    region: us-east-2
+    account_id: 899892489919
+modules:
+  - type: base
+  - type: k8s-cluster
+  - type: k8s-base

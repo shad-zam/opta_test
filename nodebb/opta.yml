@@ -1,0 +1,23 @@
+name: nodebb
+environments:
+  - name: aws-staging
+    path: "./aws-test/opta.yml"
+modules:
+  - name: redis
+    type: redis
+    node_type: cache.t2.micro
+  - name: app
+    type: k8s-service
+    port:
+      http: 4567
+    image: docker.io/nodebb/docker:latest
+    min_containers: 1
+    max_containers: 2
+    healthcheck_path: "/"
+#    autoscaling_target_cpu_percentage: 50
+#    autoscaling_target_mem_percentage: 50
+#    resource_request:
+#      cpu: 100
+#      memory: 256
+    links:
+      - redis
